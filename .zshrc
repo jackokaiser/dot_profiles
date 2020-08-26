@@ -39,93 +39,11 @@ DISABLE_CORRECTION="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git textmate themes gnu-utils command-not-found compleat npm svn web-search)
 
-export HISTSIZE=100000
+source $ZSH/oh-my-zsh.sh
+source ~/.fzf.zsh
+source /opt/ros/noetic/setup.zsh
 
-export EDITOR=emacs
-export BROWSER="google-chrome"
-
-export PATH=\
-.:\
-/home/jkaiser/.local/bin:\
-~/myLibs/mendeleydesktop-1.19.2-linux-x86_64/bin/:\
-/home/jkaiser/.npm_modules/bin:\
-$PATH
-
-
-
-
-function safeSource {
-    if [ -s $1 ]; then
-        source $1
-    else
-        echo "Could not source ${1}"
-    fi
-}
-
-safeSource $ZSH/oh-my-zsh.sh
-safeSource ~/.fzf.zsh
-# safeSource /opt/ros/melodic/setup.zsh
-safeSource /usr/share/virtualenvwrapper/virtualenvwrapper.sh
-export WORKON_HOME=~/.virtualenvs
-
-if [ -s ~/.nvm/nvm.sh ]; then
-    NVM_DIR=~/.nvm
-    source ~/.nvm/nvm.sh
-    nvm use 7.8 &> /dev/null # silence nvm use; needed for rsync
-fi
-
-# Asks the user to choose from preconfigured ROS masters
-# (configured in $HOME/.ros_masters.conf)
-set_ros_master_uri() {
-  lo_dev="lo"
-  hosts_file=$HOME/.ros_masters.conf
-  devices=() # Not strictly necessary, but added for clarity
-  for item in `ls /sys/class/net`
-  do
-      if [ "$item" != "$lo_dev"  ]
-      then
-          devices+=("$item")
-      fi
-  done
-
-  devices_string=""
-  for device in ${devices[@]}
-  do
-      ip=`ifconfig $device | grep "inet addr" | cut -d ":" -f 2 | cut -d " " -f 1`
-      if [ -n "$ip" ]; then
-          devices_string+="$ip $device "
-      fi
-  done
-
-  if [ -e $hosts_file ]
-  then
-      masters=$(cat $hosts_file | tr '\n' ' ')
-  else
-      echo "No hosts file $hosts_file exists. Creating a default file containing localhost."
-      masters="\"localhost\" \"(Local ROS master)\""
-      echo $masters > $hosts_file
-  fi
-
-
-  master_whiptail=$(echo "whiptail --title \"ROS_MASTER_URI\" --nocancel --menu \"What is your ROS master?\" 20 70 10 $masters")
-
-
-  master=$(eval ${master_whiptail} 2>&1 >/dev/tty)
-  export ROS_MASTER_URI=http://$master:11311
-  echo "Set ROS_MASTER_URI=$ROS_MASTER_URI"
-
-  whiptail_cmd=$(echo "whiptail --title \"ROS_IP\" --nocancel --menu \"What is your ROS network device?\" 20 70 10 $devices_string")
-  ip=$(eval ${whiptail_cmd} 2>&1 >/dev/tty)
-
-  export ROS_IP=$ip
-  echo "Set ROS_IP=$ROS_IP"
-}
-
-export ANDROID_HOME=$HOME/myLibs/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
+source ~/.shellrc
 
 # # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -142,3 +60,6 @@ fi
 unset __conda_setup
 # # <<< conda initialize <<<
 
+safeSource ~/.nvm/nvm.sh
+NVM_DIR=~/.nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
