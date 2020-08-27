@@ -37,12 +37,10 @@ DISABLE_CORRECTION="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git textmate themes gnu-utils command-not-found compleat npm svn web-search)
+plugins=(git command-not-found compleat npm
+         ubuntu emacs python npx nvm fzf)
 
 source $ZSH/oh-my-zsh.sh
-source ~/.fzf.zsh
-source /opt/ros/noetic/setup.zsh
-
 source ~/.shellrc
 
 # # >>> conda initialize >>>
@@ -60,6 +58,6 @@ fi
 unset __conda_setup
 # # <<< conda initialize <<<
 
-safeSource ~/.nvm/nvm.sh
-NVM_DIR=~/.nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+# source /opt/ros/noetic/setup.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
