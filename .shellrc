@@ -19,18 +19,21 @@ $HOME/gems/bin:\
 $PATH
 
 # some more ls aliases
-alias ll='ls -alF'
+# alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
 export WORKON_HOME=~/.virtualenvs
 
+alias android-studio=/opt/android-studio/bin/studio.sh
+export JAVA_HOME=/opt/android-studio/jre/bin/
+export ANDROID_SDK_ROOT=$HOME/myLibs/Android/sdk
 export ANDROID_HOME=$HOME/myLibs/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_SDK_ROOT/tools
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 
 export GEM_HOME="$HOME/gems"
 
 export NVM_DIR=~/.nvm
+
+export PATH=$PATH:$HOME/go/bin
