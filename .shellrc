@@ -16,7 +16,11 @@ export PATH=\
 .:\
 /home/jkaiser/.local/bin:\
 $HOME/gems/bin:\
+$HOME/myLibs/gradle-4.10.3/bin/:\
+$HOME/.platformio/penv/bin:\
 $PATH
+
+export PATH="$(yarn global bin):$PATH"
 
 # some more ls aliases
 # alias ll='ls -alF'
@@ -25,7 +29,10 @@ alias l='ls -CF'
 
 export WORKON_HOME=~/.virtualenvs
 
+alias esp32="source myLibs/esp-idf/export.sh"
 alias android-studio=/opt/android-studio/bin/studio.sh
+alias camunda=~/myLibs/camunda-modeler-4.4.0-linux-x64/camunda-modeler
+
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 export ANDROID_SDK_ROOT=$HOME/myLibs/Android/sdk
 export ANDROID_HOME=$HOME/myLibs/Android/sdk
