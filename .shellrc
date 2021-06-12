@@ -14,13 +14,11 @@ export BROWSER="google-chrome"
 
 export PATH=\
 .:\
-/home/jkaiser/.local/bin:\
+$HOME/.local/bin:\
 $HOME/gems/bin:\
 $HOME/myLibs/gradle-4.10.3/bin/:\
 $HOME/.platformio/penv/bin:\
 $PATH
-
-export PATH="$(yarn global bin):$PATH"
 
 # some more ls aliases
 # alias ll='ls -alF'
@@ -30,8 +28,7 @@ alias l='ls -CF'
 export WORKON_HOME=~/.virtualenvs
 
 alias esp32="source myLibs/esp-idf/export.sh"
-alias android-studio=/opt/android-studio/bin/studio.sh
-alias camunda=~/myLibs/camunda-modeler-4.4.0-linux-x64/camunda-modeler
+alias nvidia="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
 
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 export ANDROID_SDK_ROOT=$HOME/myLibs/Android/sdk
@@ -41,6 +38,8 @@ export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 
 export GEM_HOME="$HOME/gems"
 
-export NVM_DIR=~/.nvm
-
 export PATH=$PATH:$HOME/go/bin
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
