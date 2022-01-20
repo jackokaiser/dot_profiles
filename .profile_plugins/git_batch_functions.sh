@@ -3,13 +3,13 @@
 find_git_repos() {
   ignore_pattern="\(3\|\(t\|T\)hi\)rd_\?\(p\|P\)arty"
   if [ "$#" -gt 0 ]; then
-    if [ $1 = "-a" ]; then
-      ignore_pattern="*"
-    fi
+	if [ $1 = "-a" ]; then
+	  ignore_pattern="*"
+	fi
   fi
-  local repos=`find . -name ".git" -type d | sed 's/\/.git//' | grep -v "$ignore_pattern" | sort`
+  local repos=`find . -name ".git" -type d,l | sed 's/\/.git//' | grep -v "$ignore_pattern" | sort`
   for repo in $repos; do
-    echo $repo | sed 's/^\.\///'
+	echo $repo | sed 's/^\.\///'
   done
 }
 
@@ -29,13 +29,13 @@ forgit_all() {
 batch_git_set_upstream() {
   local repos=$(find_git_repos)
   while read -r repo; do
-    cd $repo
-    echo "----$repo----"
-    branch=$(git status | head -n 1 | cut -d ' ' -f 3)
-    echo "Branch: $branch"
-    list=$(git remote -v | cut -f 1 | sort -u)
-    [[ $list =~ $1 ]] && echo "Setting upstream to $1"; git branch --set-upstream-to=$1/${branch} || echo "Remote $1 does not exist. Skipping repository"
-    cd -
+	cd $repo
+	echo "----$repo----"
+	branch=$(git status | head -n 1 | cut -d ' ' -f 3)
+	echo "Branch: $branch"
+	list=$(git remote -v | cut -f 1 | sort -u)
+	[[ $list =~ $1 ]] && echo "Setting upstream to $1"; git branch --set-upstream-to=$1/${branch} || echo "Remote $1 does not exist. Skipping repository"
+	cd -
   done <<< "$repos"
 }
 
@@ -47,20 +47,20 @@ batch_git_create_bare_remote() {
   current_dir=$(pwd)
   local repos=$(find_git_repos)
   while read -r repo; do
-    cd $repo
-    local_repo=$(pwd)
-    echo "----$repo-----"
-    bare_repo=$2/$repo
-    mkdir -p $bare_repo
-    cd $bare_repo
-    git init --bare
-    cd $local_repo
-    git remote add $1 $bare_repo
-    branch=$(git status | head -n 1 | cut -d ' ' -f 3)
-    git push $1 $branch
+	cd $repo
+	local_repo=$(pwd)
+	echo "----$repo-----"
+	bare_repo=$2/$repo
+	mkdir -p $bare_repo
+	cd $bare_repo
+	git init --bare
+	cd $local_repo
+	git remote add $1 $bare_repo
+	branch=$(git status | head -n 1 | cut -d ' ' -f 3)
+	git push $1 $branch
 
-    echo "Pushed branch: $branch to bare repository $1"
-    cd $current_dir
+	echo "Pushed branch: $branch to bare repository $1"
+	cd $current_dir
   done <<< "$repos"
 }
 
@@ -71,13 +71,13 @@ batch_git_create_bare_remote() {
 batch_git_set_remote_url() {
   local repos=$(find_git_repos)
   while read -r repo; do
-    cd $repo
-    local_repo=$(pwd)
-    echo "----$repo-----"
-    bare_repo=$2/$repo
-    git remote set-url $1 $bare_repo
-    branch=$(git status | head -n 1  | cut -d ' ' -f 3)
-    cd -
+	cd $repo
+	local_repo=$(pwd)
+	echo "----$repo-----"
+	bare_repo=$2/$repo
+	git remote set-url $1 $bare_repo
+	branch=$(git status | head -n 1  | cut -d ' ' -f 3)
+	cd -
   done <<< "$repos"
 }
 
@@ -88,12 +88,12 @@ batch_git_set_remote_url() {
 batch_git_add_remote() {
   local repos=$(find_git_repos)
   while read -r repo; do
-    cd $repo
-    local_repo=$(pwd)
-    echo "----$repo-----"
-    bare_repo=$2/$repo
-    git remote add $1 $bare_repo
-    branch=$(git status | head -n 1 | cut -d ' ' -f 3)
-    cd -
+	cd $repo
+	local_repo=$(pwd)
+	echo "----$repo-----"
+	bare_repo=$2/$repo
+	git remote add $1 $bare_repo
+	branch=$(git status | head -n 1 | cut -d ' ' -f 3)
+	cd -
   done <<< "$repos"
 }
