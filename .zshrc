@@ -37,27 +37,25 @@ DISABLE_CORRECTION="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git command-not-found compleat npm
-         ubuntu emacs python npx nvm fzf)
+plugins=(git command-not-found copyfile copypath docker jump terraform compleat npm nvm aws emacs fzf)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.shellrc
 
 # # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/jacques/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/jacques/miniconda3/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+	eval "$__conda_setup"
 else
-    if [ -f "/home/jacques/miniconda3/etc/profile.d/conda.sh" ]; then
-# . "/home/jacques/miniconda3/etc/profile.d/conda.sh"  # commented out by conda initialize
-    else
-# export PATH="/home/jacques/miniconda3/bin:$PATH"  # commented out by conda initialize
-    fi
+	if [ -f "/home/jacques/miniconda3/etc/profile.d/conda.sh" ]; then
+		# . "/home/jacques/miniconda3/etc/profile.d/conda.sh"  # commented out by conda initialize
+	else
+		# export PATH="/home/jacques/miniconda3/bin:$PATH"  # commented out by conda initialize
+	fi
 fi
 unset __conda_setup
 # # <<< conda initialize <<<
 
 # source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 # source /opt/ros/noetic/setup.zsh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
