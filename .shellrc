@@ -2,28 +2,21 @@ source $HOME/.profile_plugins/git_batch_functions.sh
 source $HOME/.profile_plugins/ros_helper_functions.sh
 source $HOME/.profile_plugins/fzf_completions.sh
 
-# don't put duplicate lines in the history. See bash(1) for more options
-# don't overwrite GNU Midnight Commander's setting of `ignorespace'.
-export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
-# ... or force ignoredups and ignorespace
-export HISTCONTROL=ignoreboth
-export HISTSIZE=100000
+export HISTSIZE=1000000
+export SAVEHIST=1000000
+export HISTORY_IGNORE="(ls|cd|pwd|exit)*"
+export HIST_STAMPS="yyyy-mm-dd"
 
 export EDITOR=emacs
 export BROWSER="google-chrome"
 
-export PATH=\
-.:\
-$HOME/.local/bin:\
-$HOME/gems/bin:\
-$HOME/myLibs/gradle-4.10.3/bin/:\
-$HOME/.platformio/penv/bin:\
-$PATH
+export PATH=.:$HOME/.local/bin:$HOME/gems/bin:$HOME/myLibs/gradle-4.10.3/bin/:$HOME/.platformio/penv/bin:/usr/local/cuda-11.8/bin:$HOME/myLibs/esmini-release/esmini-demo/bin/:$HOME/myLibs/helm:$HOME/myLibs/git-filter-repo:$HOME/go/bin:$PATH
 
 # some more ls aliases
 # alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias ppp='~/myLibs/pypipe/pypipe.py'
 
 export WORKON_HOME=~/.virtualenvs
 
@@ -33,13 +26,14 @@ alias nvidia="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 export ANDROID_SDK_ROOT=$HOME/myLibs/Android/sdk
 export ANDROID_HOME=$HOME/myLibs/Android/sdk
-export PATH=$PATH:$ANDROID_SDK_ROOT/tools
-export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+export PATH=$PATH:~/myLibs/Android/platform-tools_r34.0.0-linux/platform-tools
 
 export GEM_HOME="$HOME/gems"
 
-export PATH=$PATH:$HOME/go/bin
-
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+
+alias teams="/opt/brave.com/brave/brave-browser --profile-directory=Default --app-id=cifhbcnohmdccbgoicgdjpfamggdegmo"
+alias keeweb="/opt/brave.com/brave/brave-browser --profile-directory=Default --app-id=jkgalbcgpackladljklakjobdfjoahck"
+alias tfgrep='grep -nr --include="*.tf" --include="*.tfvars"'

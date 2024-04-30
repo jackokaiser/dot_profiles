@@ -37,10 +37,26 @@ DISABLE_CORRECTION="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git command-not-found copyfile copypath docker jump terraform compleat npm nvm aws emacs fzf)
+plugins=(git command-not-found python docker jump terraform compleat npm nvm emacs fzf)
+
+RPROMPT='$(tf_prompt_info)'
 
 source $ZSH/oh-my-zsh.sh
 source ~/.shellrc
+
+# See https://martinheinz.dev/blog/110 for history optimization
+
+setopt EXTENDED_HISTORY     # Write the history file in the ':start:elapsed;command' format.
+setopt INC_APPEND_HISTORY   # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY        # Share history between all sessions.
+setopt HIST_IGNORE_DUPS     # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_IGNORE_SPACE    # Do not record an event starting with a space.
+setopt HIST_SAVE_NO_DUPS    # Do not write a duplicate event to the history file.
+setopt HIST_VERIFY          # Do not execute immediately upon history expansion.
+setopt APPEND_HISTORY       # append to history file (Default)
+setopt HIST_NO_STORE        # Don't store history commands
+setopt HIST_REDUCE_BLANKS   # Remove superfluous blanks from each command line being added to the history.
 
 # # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -56,6 +72,3 @@ else
 fi
 unset __conda_setup
 # # <<< conda initialize <<<
-
-# source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
-# source /opt/ros/noetic/setup.zsh
