@@ -26,7 +26,7 @@ alias nvidia="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 export ANDROID_SDK_ROOT=$HOME/myLibs/Android/sdk
 export ANDROID_HOME=$HOME/myLibs/Android/sdk
-export PATH=$PATH:~/myLibs/Android/platform-tools_r34.0.0-linux/platform-tools
+export PATH=$PATH:~/myLibs/Android/platform-tools_r34.0.0-linux/platform-tools:~/myLibs
 
 export GEM_HOME="$HOME/gems"
 
@@ -37,3 +37,6 @@ export NVM_DIR="$HOME/.nvm"
 alias teams="/opt/brave.com/brave/brave-browser --profile-directory=Default --app-id=cifhbcnohmdccbgoicgdjpfamggdegmo"
 alias keeweb="/opt/brave.com/brave/brave-browser --profile-directory=Default --app-id=jkgalbcgpackladljklakjobdfjoahck"
 alias tfgrep='grep -nr --include="*.tf" --include="*.tfvars"'
+if [ -r "$HOME/.shellrc.local" ]; then
+    . "$HOME/.shellrc.local"
+fi
