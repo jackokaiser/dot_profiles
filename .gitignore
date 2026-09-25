@@ -1,1 +1,4 @@
 .shellrc.local
+.gitconfig-work
+.gitconfig-local
+.fonts/.uuid
