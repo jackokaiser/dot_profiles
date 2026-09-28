@@ -18,8 +18,6 @@ alias la='ls -A'
 alias l='ls -CF'
 alias zotero=/opt/zotero/zotero
 
-export WORKON_HOME=~/.virtualenvs
-
 alias esp32="source myLibs/esp-idf/export.sh"
 alias nvidia="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
 
